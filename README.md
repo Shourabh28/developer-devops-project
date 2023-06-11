@@ -13,6 +13,7 @@
         &nbsp;  <> This script file needs to be run once and it will create the AWS EKS cluster at one go.<br />
 
   - Lets go inside each directory now :<br />
+    ```sh
     **(1) Kubernetes :**<br />
          |- charts <br />
              |- app <br />
@@ -41,6 +42,7 @@
                  |- components-iam.tf  # It create OIDC level roles for EKS components. <br />
              |- uat                    # Empty file for future use <br />
              |- prod                   # Empty file for future use <br />
+    ```
 
 # Steps to be performed to complete this setup
 
