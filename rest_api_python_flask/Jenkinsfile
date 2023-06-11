@@ -1,0 +1,76 @@
+pipeline {
+    agent any
+    environment {
+        DOCKER_HUB_REPO = "shourabh28/flask-app"
+        HELM_CHART = 'api'
+        RELEASE_NAME = 'flask-app'
+        CLUSTER_ENV = 'aws-ap-south-1-dev.yaml'
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/Shourabh28/developer-devops-project.git'
+                sh 'cd developer-devops-project'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                sh 'cd rest_api_python_flask'
+                sh 'pip install -r requirements.txt'
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh 'python -m pytest'
+            }
+        }
+
+        stage('Run Test with coverage') {
+            steps {
+                sh 'coverage run --source=app.py -m pytest'
+                sh 'coverage xml -o coverage/coverage.xml'
+                sh 'coverage report -m'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    sh 'docker image build -t $DOCKER_HUB_REPO:latest .'
+                    sh 'docker image tag $DOCKER_HUB_REPO:latest $DOCKER_HUB_REPO:$BUILD_NUMBER'
+                }
+            }
+        }
+
+        stage('Push Docker Image') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                    script {
+                        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
+                            docker.image('$DOCKER_HUB_REPO:$BUILD_NUMBER').push()
+                        }
+                    }
+                }
+                sh 'cd ../'
+            }
+        }
+        
+        stage('Package Helm Chart') {
+            steps {
+                sh "helm package ${HELM_CHART}"
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                script {
+                    sh 'cd kubernetes/app/'
+                    sh "helm upgrade --install ${RELEASE_NAME} ${HELM_CHART} --namespace dev -f values.yaml -f $CLUSTER_ENV"
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,4 @@
+CertManager:
+  letsEncryptClusterIssuer:
+    route53:
+      region: ap-south-1

@@ -1,0 +1,22 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/tls-acme: "true"
+  name: flask-app-ingress
+spec:
+  ingressClassName: alb
+  rules:
+    - host: dev-app.bmf.com       # The Hosted zone for this domain will be deleted after test 
+      http:
+        paths:
+          - pathType: ImplementationSpecific
+            backend:
+              service:
+                name: flask-app-svc
+                port:
+                  number: {{ .Values.flaskApp.port }}
+  tls:
+  - hosts:
+    - dev-app.bmf.com 
+    secretName: flask-app

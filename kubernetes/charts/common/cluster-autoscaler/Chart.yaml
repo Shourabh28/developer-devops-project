@@ -1,0 +1,15 @@
+apiVersion: v1
+icon: https://github.com/kubernetes/kubernetes/raw/master/logo/logo.png
+name: cluster-autoscaler
+description: A Helm chart for installing autoscaler.
+
+# This is the chart version. This version number should be incremented each time you make changes
+# to the chart and its templates, including the app version.
+# Versions are expected to follow Semantic Versioning (https://semver.org/)
+version: 0.1.0
+
+dependencies:
+    - name: cluster-autoscaler
+      version: 9.19.2 # https://github.com/kubernetes/autoscaler/releases
+      repository: "https://kubernetes.github.io/autoscaler"
+      alias: cluster-autoscaler

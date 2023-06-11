@@ -1,0 +1,5 @@
+flaskApp:
+  port: 4000
+  replicas: 1
+  image: flask_msg_app:0.2.5
+  nameOverride: flask-app

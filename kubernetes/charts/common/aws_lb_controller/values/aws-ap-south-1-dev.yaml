@@ -1,0 +1,7 @@
+# Environment specific variables
+clusterName: eks-ap-south-1-dev
+serviceAccount:
+  create: true
+  name: aws_lb_controller
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::315375854055:role/aws_lb_controller

@@ -1,0 +1,9 @@
+apiVersion: v2
+name: c2foCertManager
+version: 0.1.0
+
+dependencies:
+  - name: cert-manager
+    version: 1.11.0  # https://github.com/jetstack/cert-manager/releases
+    repository: "https://charts.jetstack.io"
+    alias: cert-manager

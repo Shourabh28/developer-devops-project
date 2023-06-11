@@ -1,0 +1,12 @@
+# PostgreSQL StatefulSet ConfigMap
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-db-config
+  labels:
+    app: postgresql-db
+data:
+  POSTGRES_DB: {{ .Values.postgresql.env.POSTGRES_DB }}
+  POSTGRES_USER: {{ .Values.postgresql.env.POSTGRES_USER }}
+  POSTGRES_PASSWORD: {{ .Values.postgresql.env.POSTGRES_PASSWORD }}
+  PGDATA: {{ .Values.postgresql.env.PGDATA }}

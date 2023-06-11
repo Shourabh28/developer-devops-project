@@ -1,0 +1,6 @@
+flaskApp:
+  env:
+    POSTGRES_HOST: "postgres-db-lb.dev.svc.cluster.local"
+    POSTGRES_DB: postgres
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: postgres   # Its not safe here. This credential is be passed through CI/CD tool.

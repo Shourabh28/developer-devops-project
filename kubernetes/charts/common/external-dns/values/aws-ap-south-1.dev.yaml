@@ -1,0 +1,23 @@
+
+## The DNS provider where the DNS records will be created (options: aws, google, inmemory, azure )
+provider: aws
+
+# AWS Access keys to inject as environment variables
+aws:
+  region: "ap-south-1"
+  zoneType: ""
+
+domainFilters: [test.in]
+
+rbac:
+  create: true
+  apiVersion: v1
+  pspEnabled: false
+
+serviceAccount:
+  name: external-dns
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::315375854055:role/external-dns
+
+txtPrefix: indevextdns
+txtOwnerId: indevextdns

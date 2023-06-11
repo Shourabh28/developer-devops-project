@@ -1,0 +1,6 @@
+postgresql:
+  port: 5432
+  replicas: 2
+  image: postgres:13
+  volumeClaimTemplates:
+    storage: 2Gi

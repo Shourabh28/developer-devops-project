@@ -1,0 +1,27 @@
+fullnameOverride: cert-manager
+nameOverride: cert-manager
+ingressShim:
+  defaultIssuerName: letsencrypt-issuer-dev-dns01
+  defaultIssuerKind: ClusterIssuer
+  defaultACMEDNS01ChallengeProvider: route53
+  defaultACMEChallengeType: dns01
+podDnsConfig:
+  nameservers:
+    - 1.1.1.1
+    - 8.8.8.8
+global:
+  rbac:
+    create: true
+  logLevel: 2
+installCRDs: true
+
+CertManager:
+  letsEncryptClusterIssuer:
+    emailAddress: "shourabh.singh28@gmail.com"
+
+serviceAccount:
+  create: true
+  name: cert-manager
+  annotations: {
+    eks.amazonaws.com/role-arn: arn:aws:iam::315375854055:role/cert-manager
+  }

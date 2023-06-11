@@ -1,0 +1,13 @@
+# This the global values file which will deployed to all extdns deployments
+# Look for create/delete/update events and make API calls then
+# to avoid frequent rate limit issues with Route53
+triggerLoopOnEvent: true
+# Just to make sure we don't miss anything, run a sync every 12 hours
+interval: 12h
+logLevel: info
+policy: sync
+
+aws:
+  assumeRoleArn: ""
+  batchChangeSize: 10
+  zoneTags: []
