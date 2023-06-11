@@ -1,18 +1,20 @@
 
+NOTE: 
+
 ## Directory structure and their significance
 
   - This repo consists of below files & folder at root level.
-    (1) Kubernetes :
+    **(1) Kubernetes :**
         <> This folder holds all the infra and app level helms charts.
-    (2) rest_api_python_flask :
+    **(2) rest_api_python_flask :**
         <> This folder hold the HTTP API code and their unit/integration test cases.
-    (3) terraform :
+    **(3) terraform :**
         <> This folder hold the terraform code to create AWS EKS cluster and other infra resources.
-    (4) deploy.sh :
+    **(4) deploy.sh :**
         <> This script file needs to be run once and it will create the AWS EKS cluster at one go.
 
   - Lets go inside each directory now :
-    (1) Kubernetes :
+    **(1) Kubernetes :**
          |- charts 
              |- app
                  |- api                # helm chart to run the stateless flask-app
@@ -23,7 +25,7 @@
                  |- cluster-autoscaler    # helm chart deploy cluster-autoscaler 
                  |- external-dns          # helm chart deploy external-dns
 
-    (2) rest_api_python_flask :
+    **(2) rest_api_python_flask :**
          |- Dockerfile               # It creates app logic layer above the base image
          |- docker-compose.yaml      # This can se used for local testing
          |- Jenkinsfile              # CI/CD pipeline to test and deploy the HTTP API service
@@ -31,7 +33,7 @@
          |- requirements.txt         # The required modules which needs to be pre-installed
          |- tests                    # Pytest code for integration/unit testing.
 
-    (3) terraform :
+    **(3) terraform :**
          |- aws
              |- dev
                  |- vpc.tf             # It does entire network setup with VPC/subnets, etc
@@ -45,12 +47,15 @@
 
 # Build the base infrastructure using terraform
 
+  ```sh
   $ git clone https://github.com/Shourabh28/developer-devops-project.git
   $ cd ./developer-devops-project
   $ sh deploy.sh dev 
+  ```
 
 # Deploy Cluster autoscaler for Node Groups autoscaling using Helm Charts
 
+  ```sh
   $ cd kubernetes/charts/common/
   $ cd cluster-autoscaler
   $ helm repo add autoscaler https://kubernetes.github.io/autoscaler
@@ -60,6 +65,7 @@
         -f values.yaml \
         -f values/eks-ap-south-1-dev.yaml
   $ cd ../
+  ```
 
 # Deploy Cert-manager for TLS using helm charts
 
