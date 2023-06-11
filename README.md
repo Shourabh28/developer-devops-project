@@ -3,15 +3,15 @@ NOTE:
 
 ## Directory structure and their significance
 
-  - This repo consists of below files & folder at root level.
-    **(1) Kubernetes :**
-        <> This folder holds all the infra and app level helms charts.
-    **(2) rest_api_python_flask :**
-        <> This folder hold the HTTP API code and their unit/integration test cases.
-    **(3) terraform :**
-        <> This folder hold the terraform code to create AWS EKS cluster and other infra resources.
-    **(4) deploy.sh :**
-        <> This script file needs to be run once and it will create the AWS EKS cluster at one go.
+  - This repo consists of below files & folder at root level.<br />
+    **(1) Kubernetes :**<br />
+        <> This folder holds all the infra and app level helms charts.<br />
+    **(2) rest_api_python_flask :**<br />
+        <> This folder hold the HTTP API code and their unit/integration test cases.<br />
+    **(3) terraform :**<br />
+        <> This folder hold the terraform code to create AWS EKS cluster and other infra resources.<br />
+    **(4) deploy.sh :**<br />
+        <> This script file needs to be run once and it will create the AWS EKS cluster at one go.<br />
 
   - Lets go inside each directory now :
     **(1) Kubernetes :**
