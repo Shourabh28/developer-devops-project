@@ -12,36 +12,36 @@
     **(4) deploy.sh :**<br />
         &nbsp;  <> This script file needs to be run once and it will create the AWS EKS cluster at one go.<br />
 
-  - Lets go inside each directory now :<br />
+  - Lets go inside each directory now :
     ```sh
-    **(1) Kubernetes :**<br />
-         |- charts <br />
-             |- app <br />
-                 |- api                # helm chart to run the stateless flask-app <br />
-                 |- database           # helm chart to run statefulSet Database PostgreSQL <br />
-             |- common <br />
-                 |- aws_lb_controller     # helm chart deploy aws ingress controller <br />
-                 |- cert-manager          # helm chart deploy cert-manager on EKS Cluster <br />
-                 |- cluster-autoscaler    # helm chart deploy cluster-autoscaler  <br />
-                 |- external-dns          # helm chart deploy external-dns <br />
+    (1) Kubernetes :
+         |- charts
+             |- app
+                 |- api                # helm chart to run the stateless flask-app
+                 |- database           # helm chart to run statefulSet Database PostgreSQL
+             |- common
+                 |- aws_lb_controller     # helm chart deploy aws ingress controller 
+                 |- cert-manager          # helm chart deploy cert-manager on EKS Cluster 
+                 |- cluster-autoscaler    # helm chart deploy cluster-autoscaler  
+                 |- external-dns          # helm chart deploy external-dns
 
-    **(2) rest_api_python_flask :**<br />
-         |- Dockerfile               # It creates app logic layer above the base image <br />
-         |- docker-compose.yaml      # This can se used for local testing <br />
-         |- Jenkinsfile              # CI/CD pipeline to test and deploy the HTTP API service <br />
-         |- app.py                   # Actual code logic in written in this file <br />
-         |- requirements.txt         # The required modules which needs to be pre-installed <br />
-         |- tests                    # Pytest code for integration/unit testing. <br />
+    (2) rest_api_python_flask :
+         |- Dockerfile               # It creates app logic layer above the base image
+         |- docker-compose.yaml      # This can se used for local testing
+         |- Jenkinsfile              # CI/CD pipeline to test and deploy the HTTP API service
+         |- app.py                   # Actual code logic in written in this file
+         |- requirements.txt         # The required modules which needs to be pre-installed
+         |- tests                    # Pytest code for integration/unit testing
 
-    **(3) terraform :**<br />
-         |- aws <br />
-             |- dev <br />
-                 |- vpc.tf             # It does entire network setup with VPC/subnets, etc <br />
-                 |- eks.tf             # It creates AWS EKS cluster with 2 Node groups <br />
-                 |- eks-iam.tf         # It creates necessary IAM user/roles for EKS <br />
-                 |- components-iam.tf  # It create OIDC level roles for EKS components. <br />
-             |- uat                    # Empty file for future use <br />
-             |- prod                   # Empty file for future use <br />
+    (3) terraform :
+         |- aws
+             |- dev
+                 |- vpc.tf             # It does entire network setup with VPC/subnets, etc 
+                 |- eks.tf             # It creates AWS EKS cluster with 2 Node groups
+                 |- eks-iam.tf         # It creates necessary IAM user/roles for EKS
+                 |- components-iam.tf  # It create OIDC level roles for EKS components.
+             |- uat                    # Empty file for future use
+             |- prod                   # Empty file for future use
     ```
 
 # Steps to be performed to complete this setup
